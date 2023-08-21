@@ -4,7 +4,9 @@ const AuthForm = ({ setToken }) => {
   const [alert, setAlert] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [isSignIn, setIsSignIn] = useState(true)
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,9 +30,27 @@ const AuthForm = ({ setToken }) => {
 
   return (
     <>
-      <p>Sign in to see trains! Choo Choo</p>
+      <p>
+        Sign in to see trains or <a href="#" onClick={() => setIsSignIn(!isSignIn)}>Register as a new user</a>
+        </p>
       {alert}
       <form onSubmit={handleSubmit}>
+      <label hidden={isSignIn}>
+          First Name:
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </label>
+        <label hidden={isSignIn}>
+          Last Name:
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </label>
         <label>
           Username:
           <input
